@@ -2,9 +2,11 @@ package controller
 
 import (
 	"cvwoapi/helper"
-    "cvwoapi/model"
-    "github.com/gin-gonic/gin"
-    "net/http"
+	"cvwoapi/model"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	// "fmt"
 )
 
 func SignUp(context *gin.Context) {
@@ -26,7 +28,7 @@ func SignUp(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusCreated, gin.H{"user": savedUser})
+    context.JSON(http.StatusCreated, gin.H{"user": savedUser, "ID": savedUser.ID, "username": user.Username})
 }
 
 func Login(context *gin.Context) {
@@ -39,10 +41,16 @@ func Login(context *gin.Context) {
 
     user, err := model.FindUserByUsername(input.Username)
 
-    if err != nil {
+    if (err != nil) {
         context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
         return
     }
+
+	if (user.ID == 0) {
+		context.JSON(http.StatusBadRequest, gin.H{"error": "Invalid User"})
+        return
+	}
+	
 
     jwt, err := helper.GenerateJWT(user)
     if err != nil {
@@ -50,6 +58,6 @@ func Login(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{"jwt": jwt})
+    context.JSON(http.StatusOK, gin.H{"jwt": jwt, "ID": user.ID, "username": user.Username})
 } 
 
