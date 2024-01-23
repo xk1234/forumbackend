@@ -54,5 +54,66 @@ curl -i -H "Content-Type: application/json" \
 
 # API Documentation
 
+## Protected **Route**s (Require JWT Authentication)
+### Add Post
 
+**Method**: POST
+**Route**: /api/posts
+**Description**: Adds a new post. Requires JWT authentication.
+### Update Post
+
+**Method**: PUT
+**Route**: /api/posts/:id
+**Description**: Updates an existing post by its ID. Requires JWT authentication.
+### Delete Post
+
+**Method**: DELETE
+**Route**: /api/posts/:id
+**Description**: Deletes a post by its ID. Requires JWT authentication.
+Get User Posts
+
+**Method**: GET
+**Route**: /api/posts
+**Description**: Retrieves all posts created by the authenticated user.
+### Add Comment
+
+**Method**: POST
+**Route**: /api/comments/:pid
+**Description**: Adds a comment to a post specified by the post ID (pid). Requires JWT authentication.
+### Update Comment
+
+**Method**: PUT
+**Route**: /api/comments/:id
+**Description**: Updates a specific comment by its ID. Requires JWT authentication.
+Delete Comment
+
+**Method**: DELETE
+**Route**: /api/comments/:id
+**Description**: Deletes a specific comment by its ID. Requires JWT authentication.
+## Public **Route**s (No Authentication Required)
+### Sign Up
+
+**Method**: POST
+**Route**: /public/signup
+**Description**: Registers a new user.
+### Login
+
+**Method**: POST
+**Route**: /public/login
+**Description**: Authenticates a user and returns a JWT for accessing protected **Route**s.
+### Get All Posts
+
+**Method**: GET
+**Route**: /public/posts
+**Description**: Retrieves all posts.
+Get Comments of a Post
+
+**Method**: GET
+**Route**: /public/comments/:pid
+**Description**: Retrieves all comments for a specific post, identified by the post ID (pid).
+### Get Single Post
+
+**Method**: GET
+**Route**: /public/post/:id
+**Description**: Retrieves details of a single post by its ID.
 
