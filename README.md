@@ -58,11 +58,19 @@ go run main.go
 Thats it! The API should now be setup
 
 Test the API with Curl:
+Sign Up
 ```bash
 curl -i -H "Content-Type: application/json" \
     -X POST \
     -d '{"username":"nusstudent"}' \
-    http://localhost:4000/auth/signup
+    http://localhost:4000/public/signup
+```
+
+Get Posts
+```bash
+curl -i -H "Content-Type: application/json" \
+    -X GET \
+    http://localhost:4000/public/posts
 ```
 
 # API Documentation
