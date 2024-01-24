@@ -38,6 +38,14 @@ DB_PORT="5432"
 TOKEN_TTL="2000"
 JWT_PRIVATE_KEY="jwt-secret-key"
 ```
+Alternatively, use the online database
+```
+DB_HOST="dpg-cmnstoud3nmc739gqgtg-a.oregon-postgres.render.com"
+DB_USER="pgres"
+DB_PASSWORD="yDuo1opbf1KwIOYu7IcqBeIWKFJZagyT"
+DB_NAME="postgres_bqin"
+DB_PORT="5432"
+```
 
 ### 4. Test the connection
 ```bash
@@ -55,7 +63,7 @@ dbstr := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disa
 go run main.go
 ```
 
-Thats it! The API should now be setup
+Thats it! The API should now be setup at localhost:4000
 
 Test the API with Curl:
 Sign Up
