@@ -1,5 +1,8 @@
 # CVWO Project Backend
 
+The backend is hosted at https://forumapi-dp4z.onrender.com. To get all posts for example, try:
+https://forumapi-dp4z.onrender.com/public/posts
+
 This backend was written in Go using the following frameworks:
 - GORM as a Postgres wrapper
 - Gin web framework to create the REST API
@@ -8,7 +11,7 @@ This backend was written in Go using the following frameworks:
 ChatGPT was used to generate API documentation, setup instructions, for debugging, and helped to write some of the authentication code. Postman was used for API testing
 
 ## Prerequisites
-- Install [Go](https://golang.org/dl/) (version 1.11 or later for module support).
+- Install [Go](https://golang.org/dl/) (version 1.21.4 or later).
 - Install [PostgreSQL](https://www.postgresql.org/download/) and psql command line
 
 ## Step-by-Step Setup
