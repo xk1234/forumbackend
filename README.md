@@ -30,17 +30,27 @@ create database DB_NAME;
 
 ### 3. Setup an .env.local file with the correct database credentials using the output of conninfo. Etc: You are connected to database "testdb" as user "postgres" via socket in "/tmp" at port "5432".
 ```
-DB_HOST=localhost
-DB_USER=postgres
-DB_PASSWORD=YOUR_SET_PASSWORD
-DB_NAME=testdb
-DB_PORT=5432
+DB_HOST="localhost"
+DB_USER="postgres"
+DB_PASSWORD="YOUR_SET_PASSWORD"
+DB_NAME="testdb"
+DB_PORT="5432"
 TOKEN_TTL="2000"
 JWT_PRIVATE_KEY="jwt-secret-key"
 ```
 
+### 4. Test the connection
+```bash
+PGPASSWORD="YOUR_SET_PASSWORD" psql -h "localhost" -U "postgres" -d "testdb" -p "5432"
+```
 
-### 4. Run the command below in the project folder
+### 5. Set sslmode=disable in database/db.go
+```go
+dbstr := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Africa/Lagos", os.Getenv("DB_HOST"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_NAME"), os.Getenv("DB_PORT"))
+```
+
+
+### 6. Run the command below in the project folder
 ```bash
 go run main.go
 ```
@@ -52,7 +62,7 @@ Test the API with Curl:
 curl -i -H "Content-Type: application/json" \
     -X POST \
     -d '{"username":"nusstudent"}' \
-    http://localhost:8000/auth/signup
+    http://localhost:4000/auth/signup
 ```
 
 # API Documentation
