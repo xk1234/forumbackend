@@ -15,21 +15,26 @@ ChatGPT was used to generate API documentation, setup instructions, for debuggin
 
 ### 1. Clone Project
 ```bash
-git clone https://github.com/xk1234/cvwobackend.git
+git clone https://github.com/xk1234/forumbackend.git
+cd forumbackend
 ```
 
-### 2. Create a Postgres Database
+### 2. Create a Postgres Database(enter password if needed)
 ```bash
-createdb DB_NAME_HERE
+psql user=postgres
+create database DB_NAME;
+\c DB_NAME
+\conninfo
+\password
 ```
 
-### 3. Setup an .env.local file with the correct database credentials
+### 3. Setup an .env.local file with the correct database credentials using the output of conninfo. Etc: You are connected to database "testdb" as user "postgres" via socket in "/tmp" at port "5432".
 ```
-DB_HOST=?
-DB_USER=?
-DB_PASSWORD=?
-DB_NAME=?
-DB_PORT=?
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=YOUR_SET_PASSWORD
+DB_NAME=testdb
+DB_PORT=5432
 TOKEN_TTL="2000"
 JWT_PRIVATE_KEY="jwt-secret-key"
 ```
@@ -47,7 +52,7 @@ Test the API with Curl:
 curl -i -H "Content-Type: application/json" \
     -X POST \
     -d '{"username":"nusstudent"}' \
-    http://localhost:8000/auth/login
+    http://localhost:8000/auth/signup
 ```
 
 # API Documentation
