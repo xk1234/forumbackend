@@ -9,7 +9,7 @@ ChatGPT was used to generate API documentation, setup instructions, for debuggin
 
 ## Prerequisites
 - Install [Go](https://golang.org/dl/) (version 1.11 or later for module support).
-- Install [PostgreSQL](https://www.postgresql.org/download/).
+- Install [PostgreSQL](https://www.postgresql.org/download/) and psql command line
 
 ## Step-by-Step Setup
 
@@ -28,7 +28,8 @@ create database DB_NAME;
 \password
 ```
 
-### 3. Setup an .env.local file with the correct database credentials using the output of conninfo. Etc: You are connected to database "testdb" as user "postgres" via socket in "/tmp" at port "5432".
+### 3. Setup an .env.local file with the correct database credentials using the output of conninfo. 
+Etc: You are connected to database "testdb" as user "postgres" via socket in "/tmp" at port "5432".
 ```
 DB_HOST="localhost"
 DB_USER="postgres"
@@ -45,6 +46,8 @@ DB_USER="pgres"
 DB_PASSWORD="yDuo1opbf1KwIOYu7IcqBeIWKFJZagyT"
 DB_NAME="postgres_bqin"
 DB_PORT="5432"
+TOKEN_TTL="2000"
+JWT_PRIVATE_KEY="jwt-secret-key"
 ```
 
 ### 4. Test the connection
@@ -52,7 +55,7 @@ DB_PORT="5432"
 PGPASSWORD="YOUR_SET_PASSWORD" psql -h "localhost" -U "postgres" -d "testdb" -p "5432"
 ```
 
-### 5. Set sslmode=disable in database/db.go
+### 5. Set sslmode=disable in database/db.go(only for local database)
 ```go
 dbstr := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Africa/Lagos", os.Getenv("DB_HOST"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_NAME"), os.Getenv("DB_PORT"))
 ```
